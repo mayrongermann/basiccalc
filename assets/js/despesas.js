@@ -211,3 +211,26 @@ document.addEventListener('DOMContentLoaded', () => {
     renderChart();
     renderExpensesList();
 });
+// Função para baixar o gráfico
+function downloadChart() {
+    // Obtenha o elemento canvas do gráfico. Certifique-se de que o ID está correto.
+    const canvas = document.getElementById('summary-chart-container').querySelector('canvas');
+
+    if (canvas) {
+        // Converte o conteúdo do canvas para uma URL de dados (imagem PNG)
+        const image = canvas.toDataURL('image/png');
+
+        // Cria um link temporário
+        const link = document.createElement('a');
+        link.href = image;
+        link.download = 'grafico-despesas.png'; // Define o nome do arquivo
+
+        // Simula o clique no link para iniciar o download
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+}
+
+// Adiciona um listener de evento ao botão para acionar o download
+document.getElementById('download-chart-btn').addEventListener('click', downloadChart);

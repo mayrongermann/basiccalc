@@ -1,12 +1,11 @@
-/* Definição de variáveis de cor */
 :root {
     --primary-color: #9c6ed4;
     --secondary-color: #34a853;
     --dark-color: #333333;
     --light-color: #e9ecef;
     --background-color: #f4f4f4;
-    --hover-color: #2a8e45; /* Cor para hover dos botões, um verde mais escuro */
-    --link-hover-color: #e0e0e0; /* Cor para hover dos links, um cinza claro */
+    --hover-color: #2a8e45;
+    --link-hover-color: #e0e0e0;
 }
 
 /* Estilos gerais da página */
@@ -24,7 +23,7 @@ body {
 img.logo {
     height: 100px;
     margin-bottom: 10px;
-    position: left;
+    /* Removido position: left */
 }
 
 /* Estilos do cabeçalho fixo */
@@ -33,11 +32,8 @@ header {
     color: #fff;
     padding: 20px 0;
     text-align: center;
-    
-    /* Alteração principal */
     position: sticky;
     top: 0;
-    
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -349,6 +345,7 @@ footer {
 .modal-content .close-button {
     background-color: #dc3545;
 }
+
 /* Container que centraliza o conteúdo e permite os anúncios laterais */
 .page-container {
     display: flex;
@@ -356,7 +353,7 @@ footer {
     align-items: flex-start;
     gap: 30px;
     width: 100%;
-    max-width: 1200px; /* Ajuste para dar mais espaço */
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -368,11 +365,11 @@ footer {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #e0e0e0; /* Cor de fundo para o placeholder */
-    border: 1px dashed #757575; /* Borda pontilhada para indicar que é um espaço de anúncio */
+    background-color: #e0e0e0;
+    border: 1px dashed #757575;
     text-align: center;
-    min-height: 400px; /* Altura mínima para o anúncio */
-    width: 250px; /* Largura padrão para anúncios laterais */
+    min-height: 400px;
+    width: 250px;
 }
 
 /* Esconde os anúncios em telas pequenas */
@@ -381,6 +378,25 @@ footer {
         display: none;
     }
     .page-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+}
+
+.main-content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+@media (max-width: 900px) {
+    .main-content-wrapper {
         flex-direction: column;
         align-items: center;
         gap: 0;
