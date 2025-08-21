@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <header>
+    <header class="topo-tela">
         <img src="assets/img/logo.png" alt="BasicCalc Logo" class="logo">
+        <p>Sua plataforma de calculadoras simples e eficientes.</p>
         <nav class="main-nav">
             <ul>
                 <li><a href="index.html">Início</a></li>
@@ -19,56 +20,54 @@
         </nav>
     </header>
 
-    <div class="main-content-wrapper">
+    <main class="page-container">
         <div class="ads-placeholder">
             <p>Espaço para Anúncio</p>
             <p>Google Ads</p>
         </div>
 
-        <main>
-            <div class="despesas-container">
-                <div class="calculator-container">
-                    <h2>Calculadora de Despesas</h2>
-                    
-                    <form id="expense-form">
-                        <div class="input-group">
-                            <label for="expense-name">Descrição da Despesa:</label>
-                            <input type="text" id="expense-name" placeholder="Ex: Aluguel, Gasolina" required>
-                        </div>
-                        
-                        <div class="input-group">
-                            <label for="expense-amount">Valor (R$):</label>
-                            <input type="number" id="expense-amount" placeholder="Ex: 1500" required>
-                        </div>
-                        
-                        <div class="input-group">
-                            <label>Categoria:</label>
-                            <div id="category-buttons" class="category-buttons-container">
-                            </div>
-                        </div>
-
-                        <button type="submit">Adicionar Despesa</button>
-                    </form>
-                </div>
-
-                <div class="expenses-summary">
-                    <h3>Resumo Mensal</h3>
-                    <div id="summary-chart-container">
+        <div class="despesas-container">
+            <div class="calculator-container">
+                <h2>Calculadora de Despesas</h2>
+                
+                <form id="expense-form">
+                    <div class="input-group">
+                        <label for="expense-name">Descrição da Despesa:</label>
+                        <input type="text" id="expense-name" placeholder="Ex: Aluguel, Gasolina" required>
                     </div>
                     
-                    <div id="expenses-list-container">
+                    <div class="input-group">
+                        <label for="expense-amount">Valor (R$):</label>
+                        <input type="number" id="expense-amount" placeholder="Ex: 1500" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Categoria:</label>
+                        <div id="category-buttons" class="category-buttons-container">
+                        </div>
                     </div>
 
-                    <button id="download-chart-btn">Baixar Gráfico</button>
-                </div>
+                    <button type="submit">Adicionar Despesa</button>
+                </form>
             </div>
-        </main>
+
+            <div class="expenses-summary">
+                <h3>Resumo Mensal</h3>
+                <div id="summary-chart-container">
+                </div>
+                
+                <div id="expenses-list-container">
+                </div>
+
+                <button id="download-chart-btn">Baixar Gráfico</button>
+            </div>
+        </div>
 
         <div class="ads-placeholder">
             <p>Espaço para Anúncio</p>
             <p>Google Ads</p>
         </div>
-    </div>
+    </main>
 
     <footer>
         <p>&copy; 2025 BasicCalc. Todos os direitos reservados.</p>
