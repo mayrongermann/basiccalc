@@ -21,5 +21,4 @@ O objetivo é ajudar no **controle pessoal de finanças** através de ferramenta
 ---
 
 ## 📦 Como Usar
-1. Clone o repositório:
-   ```basgit clone https://github.com/SEU_USUARIO/BasicCalc.git
+1. Entre pelo link: https://mayrongermann.github.io/basiccalc/
