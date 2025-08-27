@@ -1,4 +1,4 @@
-# 🧮 BasicCalc — Calculadoras Financeiras Simples
+# 🧮 BasicCalc — Calculadoras Financeiras
 
 O **BasicCalc** é uma plataforma web com várias calculadoras financeiras feitas em **HTML, CSS e JavaScript**, projetada para ser leve, acessível e prática.  
 O objetivo é ajudar no **controle pessoal de finanças** através de ferramentas rápidas e intuitivas.
