@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BasicCalc - Calculadora de Combustível</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Estilos adicionais para a resposta da calculadora */
+        .resultado-combustivel {
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            color: white;
+            margin-top: 1.5rem;
+        }
+        .resultado-alcool { background-color: #28a745; } /* Verde para Álcool */
+        .resultado-gasolina { background-color: #fd7e14; } /* Laranja/Vermelho para Gasolina */
+        .resultado-combustivel h3 { margin-top: 0; font-size: 1.8em; }
+        .resultado-combustivel p { opacity: 0.9; }
+    </style>
+</head>
+<body>
+
+ <header class="topo-tela">
+    <div class="header-container">
+        <img src="assets/img/logo.png" alt="BasicCalc Logo" class="logo">
+        
+        <button class="hamburger-btn" id="hamburger-btn">
+            &#9776; </button>
+
+        <nav class="main-nav" id="main-nav-links">
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="drop-btn">Calculadoras &#9662;</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-column">
+                            <h4>Orçamento e Carreira</h4>
+                            <a href="sal_liquido.html">Salário Líquido</a>
+                            <a href="503020calc.html">Divisão de Salário</a>
+                            <a href="despesas.html">Divisão de Despesas</a>
+                        </div>
+                        <div class="dropdown-column">
+                            <h4>Metas e Dívidas</h4>
+                            <a href="independencia.html">Independência Financeira</a>
+                            <a href="metas.html">Metas Financeiras</a>
+                            <a href="dividas.html">Quitação de Dívidas</a>
+                            <a href="juros.html">Juros Compostos</a>
+                        </div>
+                        <div class="dropdown-column">
+                            <h4>Automóvel</h4>
+                            <a href="gasxalc.html">Álcool ou Gasolina</a>
+                            <a href="custo_viagem.html">Custo de Viagem</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li><a href="sobre.html">Sobre</a></li>
+            </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-container">
+        <div class="ads-placeholder"></div>
+
+        <div class="calculator-container">
+            <h2>Álcool ou Gasolina?</h2>
+            <p style="text-align: center; margin-top: -1.5rem; margin-bottom: 2rem; font-size: 0.9em; color: #6c757d;">Descubra qual combustível está valendo mais a pena agora.</p>
+            
+            <form id="combustivel-form">
+                
+                <div style="display: flex; gap: 1rem;">
+                    <div class="input-group" style="flex: 1;">
+                        <label for="precoGasolina">Preço da Gasolina (R$)</label>
+                        <input type="number" id="precoGasolina" step="0.01" placeholder="Ex: 5.80" required>
+                    </div>
+                    <div class="input-group" style="flex: 1;">
+                        <label for="precoAlcool">Preço do Álcool (R$)</label>
+                        <input type="number" id="precoAlcool" step="0.01" placeholder="Ex: 3.90" required>
+                    </div>
+                </div>
+
+                <hr style="margin: 1.5rem 0;">
+                <p style="text-align: center; font-size: 0.9em; color: #6c757d;">Para um cálculo exato, informe o consumo do seu carro (opcional):</p>
+
+                <div style="display: flex; gap: 1rem;">
+                    <div class="input-group" style="flex: 1;">
+                        <label for="consumoGasolina">Consumo com Gasolina (km/L)</label>
+                        <input type="number" id="consumoGasolina" step="0.1" placeholder="Ex: 13.5">
+                    </div>
+                    <div class="input-group" style="flex: 1;">
+                        <label for="consumoAlcool">Consumo com Álcool (km/L)</label>
+                        <input type="number" id="consumoAlcool" step="0.1" placeholder="Ex: 9.5">
+                    </div>
+                </div>
+                
+            </form>
+
+            <div id="resultado" style="display: none;">
+                </div>
+        </div>
+        
+        <div class="ads-placeholder"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 BasicCalc. Todos os direitos reservados.</p>
+    </footer>
+    <script src="assets/js/gasxalc.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

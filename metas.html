@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BasicCalc - Divisão de Salário</title>
+    <title>BasicCalc - Calculadora de Metas Financeiras</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -57,18 +57,43 @@
         </div>
 
         <div class="calculator-container">
-            <h2>Divisão de Salário 50/30/20</h2>
-            <form id="division-form">
+            <h2>Calculadora de Metas Financeiras</h2>
+            <form id="metas-form">
+                
                 <div class="input-group">
-                    <label for="salario">Salário Líquido Mensal:</label>
-                    <input type="number" id="salario" placeholder="Ex: 5000.00" required>
+                    <label for="objetivo">Qual é o seu objetivo?</label>
+                    <input type="text" id="objetivo" placeholder="Ex: Viagem dos sonhos" required>
                 </div>
-                <button type="submit">Calcular</button>
+
+                <div class="input-group">
+                    <label for="valorFuturo">Qual o valor total do objetivo? (R$)</label>
+                    <input type="number" id="valorFuturo" step="100" min="0" placeholder="Ex: 20000.00" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="valorInicial">Quanto você já tem guardado? (R$)</label>
+                    <input type="number" id="valorInicial" step="100" min="0" value="0" placeholder="Ex: 1500.00" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Em quanto tempo você quer realizar?</label>
+                    <div class="input-row"> <input type="number" id="prazoAnos" min="0" value="1" placeholder="Anos">
+                        <label for="prazoAnos" style="margin-left: 5px; margin-right: 10px;">anos e</label>
+                        <input type="number" id="prazoMeses" min="0" value="0" placeholder="Meses">
+                        <label for="prazoMeses" style="margin-left: 5px;">meses</label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="rentabilidade">Qual a rentabilidade mensal estimada (%)?</label>
+                    <input type="number" id="rentabilidade" step="0.1" min="0" placeholder="Ex: 0.8" required>
+                </div>
+
+                <button type="submit">Calcular Plano</button>
             </form>
             <div id="resultado" class="result-area">
-            </div>
+                </div>
         </div>
-        
         <div class="ads-placeholder">
             <p>Espaço para Anúncio</p>
             <p>Google Ads</p>
@@ -78,8 +103,7 @@
     <footer>
         <p>&copy; 2025 BasicCalc. Todos os direitos reservados.</p>
     </footer>
-
-    <script src="assets/js/503020.js"></script>
+    <script src="assets/js/metas.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

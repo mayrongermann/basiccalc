@@ -400,3 +400,189 @@ footer {
         gap: 0;
     }
 }
+/* ==============================================
+   CSS ATUALIZADO PARA O NOVO HEADER PROFISSIONAL (V2 - COM CORREÇÃO)
+   ==============================================
+*/
+
+/* Estilos para o cabeçalho (topo-tela) */
+.topo-tela {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.topo-tela p {
+    display: none;
+}
+
+/* Container para alinhar logo e menu lado a lado */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    height: 80px;
+    margin-bottom: 0;
+}
+
+/* Ajustes no menu principal */
+.topo-tela .main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.topo-tela .main-nav > ul > li > a { /* Seletor mais específico para os links principais */
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 5px;
+    transition: color 0.3s;
+}
+
+.topo-tela .main-nav > ul > li > a:hover {
+    color: var(--link-hover-color);
+}
+
+/* --- Estilos do Dropdown --- */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 100;
+    margin-top: 10px;
+    padding: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
+    gap: 30px;
+}
+
+/* Colunas dentro do dropdown */
+.dropdown-column {
+    flex: 1;
+}
+
+/* TÍTULO DA COLUNA COM CORRIGIDO - AGORA VAI APARECER */
+.dropdown-content h4 {
+    margin: 0 0 10px 0;
+    font-size: 1em;
+    color: var(--primary-color) !important; /* Usando sua cor primária e !important para garantir */
+    border-bottom: 2px solid var(--light-color);
+    padding-bottom: 8px;
+}
+
+/* LINKS DO DROPDOWN CORRIGIDOS - AGORA VÃO APARECER */
+.dropdown-content a {
+    color: var(--dark-color) !important; /* Usando sua cor escura e !important para garantir */
+    padding: 8px 0;
+    display: block;
+    font-weight: normal;
+    text-decoration: none; /* Garante que não tenha sublinhado */
+}
+
+.dropdown-content a:hover {
+    color: var(--primary-color) !important; /* O hover também precisa da correção */
+    background-color: transparent; /* Garante que não haja fundo colorido no hover */
+}
+
+/* Mostra o dropdown ao passar o mouse */
+.dropdown:hover .dropdown-content {
+    display: flex;
+}
+
+/* --- Estilos e Lógica do Menu Mobile (Hamburger) --- */
+.hamburger-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2.2em;
+    cursor: pointer;
+}
+
+/* Media Query usando seu breakpoint de 900px */
+@media (max-width: 900px) {
+    .logo {
+        height: 60px;
+    }
+
+    .topo-tela .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary-color);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .topo-tela .main-nav.active {
+        display: block;
+    }
+    
+    .topo-tela .main-nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+        gap: 0;
+    }
+    .topo-tela .main-nav li {
+        width: 100%;
+    }
+    .topo-tela .main-nav a {
+        display: block;
+        padding: 15px 10px;
+        width: 100%;
+    }
+
+    .hamburger-btn {
+        display: block;
+    }
+
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        background-color: transparent;
+        min-width: auto;
+        padding: 10px 0 10px 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .dropdown-content {
+        display: none;
+    }
+    .dropdown:focus-within .dropdown-content,
+    .drop-btn:focus + .dropdown-content {
+        display: flex;
+    }
+
+    .dropdown-content a,
+    .dropdown-content a:hover {
+        color: var(--link-hover-color) !important;
+    }
+
+    .dropdown-column h4 {
+        color: #fff !important;
+        border-bottom-color: rgba(255, 255, 255, 0.5);
+    }
+}
