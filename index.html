@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BasicCalc - Calculadoras Financeiras Simples</title>
+    
     <link rel="stylesheet" href="assets/css/style.css">
-      <link rel="icon" type="image/svg+xml" href="assets/img/icon_calc.svg">
-    <link rel="alternate icon" href="icon_calc.png">
+    <link rel="icon" type="image/svg+xml" href="assets/img/icon_calc.svg">
+    <link rel="alternate icon" href="assets/img/icon_calc.png">
 </head>
 <body>
 
-    <header class="topo-tela">
+<header class="topo-tela">
     <div class="header-container">
-        <img src="assets/img/logo.png" alt="BasicCalc Logo" class="logo">
+        <a href="index.html"><img src="assets/img/logo.png" alt="BasicCalc Logo" class="logo"></a>
         
         <button class="hamburger-btn" id="hamburger-btn">
             &#9776; </button>
@@ -24,44 +25,53 @@
                 <li class="dropdown">
                     <a href="javascript:void(0);" class="drop-btn">Calculadoras &#9662;</a>
                     <div class="dropdown-content">
+                        
                         <div class="dropdown-column">
-                            <h4>Orçamento e Carreira</h4>
-                            <a href="sal_liquido.html">Salário Líquido</a>
-                            <a href="503020calc.html">Divisão de Salário</a>
-                            <a href="despesas.html">Divisão de Despesas</a>
+                            <h4>Direitos Trabalhistas</h4>
+                            <a href="pages/sal_liquido.html">Salário Líquido</a>
+                            <a href="pages/ferias.html">Cálculo de Férias</a>
+                            <a href="pages/decimo_terceiro.html">13º Salário</a>
+                            <a href="pages/rescisao.html">Rescisão de Contrato (em breve)</a>
                         </div>
+                        
                         <div class="dropdown-column">
-                            <h4>Metas e Dívidas</h4>
-                            <a href="independencia.html">Independência Financeira</a>
-                            <a href="metas.html">Metas Financeiras</a>
-                            <a href="dividas.html">Quitação de Dívidas</a>
-                            <a href="juros.html">Juros Compostos</a>
+                            <h4>Planejamento Financeiro</h4>
+                            <a href="pages/503020calc.html">Divisão de Salário (50/30/20)</a>
+                            <a href="pages/despesas.html">Divisão de Despesas</a>
+                            <a href="pages/metas.html">Metas Financeiras</a>
+                            <a href="pages/independencia.html">Independência Financeira</a>
+                            <a href="pages/dividas.html">Quitação de Dívidas</a>
                         </div>
+                        
                         <div class="dropdown-column">
-                            <h4>Automóvel</h4>
-                            <a href="gasxalc.html">Álcool ou Gasolina</a>
-                            <a href="custo_viagem.html">Custo de Viagem</a>
+                            <h4>Investimentos</h4>
+                            <a href="pages/juros.html">Juros Compostos</a>
+                            <br> <h4>Custos do Dia a Dia</h4>
+                            <a href="pages/gasxalc.html">Álcool ou Gasolina</a>
+                            <a href="pages/custo_viagem.html">Custo de Viagem</a>
                         </div>
+
                     </div>
                 </li>
 
-                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="pages/sobre.html">Sobre</a></li>
             </ul>
-            </nav>
-        </div>
-    </header>
+        </nav>
+    </div>
+</header>
 
     <main class="home-main">
         <div class="intro-container">
             <h2>Simplifique suas finanças.</h2>
             <p>Com o BasicCalc, você tem acesso a ferramentas fáceis de usar para organizar seu dinheiro e alcançar seus objetivos.</p>
-            <a href="despesas.html" class="cta-button">Comece a Usar Agora</a>
+            <a href="pages/despesas.html" class="cta-button">Comece a Usar Agora</a>
         </div>
     </main>
 
     <footer>
         <p>&copy; 2025 BasicCalc. Todos os direitos reservados.</p>
     </footer>
-    <script src="assets/js/main.js"></script>
+    
+    <script src=" assets/js/main.js"></script>
 </body>
 </html>

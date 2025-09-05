@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BasicCalc - Calculadora de Independência Financeira</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+   <div id="header-placeholder"></div>
+
+    <main class="page-container">
+        <div class="ads-placeholder">
+            <p>Espaço para Anúncio</p>
+        </div>
+
+        <div class="calculator-container">
+            <h2>Calculadora de Independência Financeira</h2>
+            <p style="text-align: center; margin-top: -1.5rem; margin-bottom: 2rem; font-size: 0.9em; color: #6c757d;">Descubra em quanto tempo você pode alcançar a liberdade financeira.</p>
+            
+            <form id="if-form">
+                
+                <div class="input-group">
+                    <label for="custoMensal">Qual seu custo de vida mensal? (R$)</label>
+                    <input type="number" id="custoMensal" placeholder="Ex: 4000" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="patrimonioAtual">Quanto você já tem investido? (R$)</label>
+                    <input type="number" id="patrimonioAtual" value="0" placeholder="Ex: 50000" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="aporteMensal">Quanto você investe por mês? (R$)</label>
+                    <input type="number" id="aporteMensal" placeholder="Ex: 1500" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="rentabilidadeAnual">Rentabilidade real anual estimada (%)</label>
+                    <input type="number" id="rentabilidadeAnual" step="0.1" value="6" placeholder="Ex: 6" required>
+                </div>
+
+                <button type="submit">Calcular Minha Jornada IF</button>
+            </form>
+
+            <div id="resultado" class="result-area" style="display: none;">
+                </div>
+        </div>
+        
+        <div class="ads-placeholder">
+            <p>Espaço para Anúncio</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 BasicCalc. Todos os direitos reservados.</p>
+    </footer>
+    <script src="../assets/js/independencia.js"></script>
+    <script src="../assets/js/main.js"></script>
+
+</body>
+</html>

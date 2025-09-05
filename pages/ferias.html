@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Férias - BasicCalc's</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main class="page-container">
+        <div class="calculator-container">
+            <h2>Calculadora de Férias</h2>
+            <p style="text-align: center; margin-top: -1.5rem; margin-bottom: 2rem; font-size: 0.9em; color: #6c757d;">Descubra o valor exato que você receberá antes do seu descanso.</p>
+            
+            <form id="ferias-form">
+                <div class="input-group">
+                    <label for="salarioBruto">Seu Salário Bruto Mensal (R$)</label>
+                    <input type="number" id="salarioBruto" step="0.01" placeholder="Ex: 3500.00" required>
+                </div>
+                <div class="input-group">
+                    <label for="mediaAdicionais">Média Mensal de Adicionais (R$)</label>
+                    <input type="number" id="mediaAdicionais" step="0.01" value="0" placeholder="Horas extras, comissões, etc.">
+                </div>
+                <div class="input-group">
+                    <label for="diasFerias">Quantos dias de férias você vai tirar?</label>
+                    <input type="number" id="diasFerias" value="30" min="5" max="30" required>
+                </div>
+                <div class="input-group" style="display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" id="venderFerias" style="width: auto;">
+                    <label for="venderFerias" style="margin-bottom: 0;">Vender 1/3 das férias (Abono Pecuniário)?</label>
+                </div>
+                <div class="input-group">
+                    <label for="dependentes">Nº de dependentes (para IRRF)</label>
+                    <input type="number" id="dependentes" value="0" min="0" required>
+                </div>
+                <button type="submit">Calcular Valor das Férias</button>
+            </form>
+
+            <div id="resultado" class="result-area" style="display: none;"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 BasicCalc. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/ferias.js"></script>
+</body>
+</html>
