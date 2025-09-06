@@ -1,53 +1,44 @@
-document.addEventListener('DOMContentLoaded', function() {
-const hamburgerBtn = document.getElementById('hamburger-btn');
-const navLinks = document.getElementById('main-nav-links');
+// Arquivo: assets/js/main.js (VERSÃO FINAL E CORRIGIDA)
 
-if (hamburgerBtn && navLinks) {
-    hamburgerBtn.addEventListener('click', function() {
-        navLinks.classList.toggle('active');
-    });
-}
-});
-function ativarMenuHamburger() {
-const hamburgerBtn = document.getElementById('hamburger-btn');
-const navLinks = document.getElementById('main-nav-links');
-
-if (hamburgerBtn && navLinks) {
-    hamburgerBtn.addEventListener('click', function() {
-        navLinks.classList.toggle('active');
-    });
-}
-}
-
-// Função principal para carregar componentes reutilizáveis
-async function carregarComponentes() {
-// Encontra o placeholder do header no HTML
-const headerPlaceholder = document.getElementById('header-placeholder');
-
-if (headerPlaceholder) {
-    try {
-        // Busca o conteúdo no caminho correto
-        const response = await fetch('../assets/components/header.html');
-        
-        // Verifica se o arquivo foi encontrado
-        if (!response.ok) {
-            throw new Error(`Arquivo não encontrado: ${response.statusText}`);
+/**
+ * Função genérica para carregar um componente HTML em um elemento da página.
+ * @param {string} url - O caminho para o arquivo do componente (ex: '/assets/components/header.html').
+ * @param {string} placeholderId - O ID do elemento onde o componente será inserido.
+ */
+async function carregarComponente(url, placeholderId) {
+    const placeholder = document.getElementById(placeholderId);
+    if (placeholder) { // Só tenta carregar se o placeholder existir na página
+        try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`Componente não encontrado: ${url}`);
+            placeholder.innerHTML = await response.text();
+        } catch (error) {
+            console.error(`Erro ao carregar o componente ${url}:`, error);
+            placeholder.innerHTML = `<p style="color:red; text-align:center;">Erro ao carregar.</p>`;
         }
-
-        const headerHTML = await response.text();
-        
-        // Insere o HTML do header dentro do placeholder
-        headerPlaceholder.innerHTML = headerHTML;
-        
-        // Ativa a funcionalidade do menu hamburger DEPOIS que o header foi carregado
-        ativarMenuHamburger();
-
-    } catch (error) {
-        console.error('Erro ao carregar o header:', error);
-        headerPlaceholder.innerHTML = '<p style="color:red; text-align:center;">Erro ao carregar o menu.</p>';
     }
 }
+
+/**
+ * Ativa a funcionalidade do menu hamburger.
+ * Deve ser chamada DEPOIS que o header for carregado.
+ */
+function ativarMenuHamburger() {
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navLinks = document.getElementById('main-nav-links');
+    if (hamburgerBtn && navLinks) {
+        hamburgerBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
+    }
 }
 
-// Executa a função para carregar os componentes assim que o DOM estiver pronto
-document.addEventListener('DOMContentLoaded', carregarComponentes);
+// Quando a página terminar de carregar, executa as funções de carregamento.
+document.addEventListener('DOMContentLoaded', () => {
+    // Carrega o header e, QUANDO TERMINAR (.then), ativa o menu.
+    carregarComponente('../assets/components/header.html', 'header-placeholder').then(() => {
+        ativarMenuHamburger();
+    });
+    
+    // Carrega os outros componentes universais.
+    carregarComponente('../assets/components/ads.html', 'left-ad-placeholder');
+    carregarComponente('../assets/components/ads.html', 'right-ad-placeholder');
+});

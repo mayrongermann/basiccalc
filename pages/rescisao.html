@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Rescisão de Contrato - BasicCalc's</title>
+    <title>Calculadora de Rescisão - BasicCalc's</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
@@ -11,60 +11,70 @@
     <div id="header-placeholder"></div>
 
     <main class="page-container">
-        <div class="calculator-container" style="max-width: 550px;">
+        <!-- Anúncio à esquerda -->
+        <aside class="ad-sidebar ad-sidebar-left">
+            <div id="left-ad-placeholder"></div>
+        </aside>
+
+        <!-- Calculadora central -->
+        <div class="calculator-container">
             <h2>Calculadora de Rescisão de Contrato</h2>
-            <p style="text-align: center; margin-top: -1.5rem; margin-bottom: 2rem; font-size: 0.9em; color: #6c757d;">Entenda todos os valores que você tem a receber no término do seu contrato.</p>
-            
+            <p style="text-align: center; margin-top: -1.5rem; margin-bottom: 2rem; font-size: 0.9em; color: #6c757d;">
+                Entenda todos os valores que você tem a receber no término do seu contrato.
+            </p>
+
             <form id="rescisao-form">
-    <div class="input-group">
-        <label for="motivoSaida">Qual o motivo da rescisão?</label>
-        <select id="motivoSaida" class="input-group input" style="width: 100%; padding: 10px;">
-            <option value="sem_justa_causa">Demissão sem justa causa</option>
-            <option value="pedido_demissao">Pedido de demissão</option>
-            <option value="acordo">Acordo entre as partes</option>
-            <option value="com_justa_causa">Demissão por justa causa</option>
-        </select>
-    </div>
+                <div class="input-group">
+                    <label for="motivo">Qual o motivo da rescisão?</label>
+                    <select id="motivo" required>
+                        <option value="sem-justa-causa">Demissão sem justa causa</option>
+                        <option value="com-justa-causa">Demissão com justa causa</option>
+                        <option value="pedido-demissao">Pedido de demissão</option>
+                    </select>
+                </div>
 
-    <div class="input-group">
-        <label for="avisoPrevio">Como será o Aviso Prévio?</label>
-        <select id="avisoPrevio" class="input-group input" style="width: 100%; padding: 10px;">
-            <option value="indenizado">Indenizado (a empresa me dispensou de cumprir)</option>
-            <option value="trabalhado">Trabalhado (eu cumpri ou vou cumprir o aviso)</option>
-            <option value="nao_cumprido_pedi_demissao">Não vou cumprir (pedi demissão e sairei logo)</option>
-        </select>
-    </div>
+                <div class="input-group">
+                    <label for="avisoPrevio">Como será o Aviso Prévio?</label>
+                    <select id="avisoPrevio" required>
+                        <option value="indenizado">Indenizado (empresa dispensou do cumprimento)</option>
+                        <option value="trabalhado">Trabalhado</option>
+                        <option value="nao-aplicavel">Não aplicável</option>
+                    </select>
+                </div>
 
-    <div style="display: flex; gap: 1rem;">
-        <div class="input-group" style="flex: 1;">
-            <label for="dataAdmissao">Data de Admissão</label>
-            <input type="date" id="dataAdmissao" required>
+                <div class="input-group">
+                    <label for="admissao">Data de Admissão</label>
+                    <input type="date" id="admissao" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="saida">Data de Saída (último dia trabalhado)</label>
+                    <input type="date" id="saida" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="salarioBruto">Último Salário Bruto (R$)</label>
+                    <input type="number" id="salarioBruto" placeholder="Ex: 3000.00" step="0.01" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="fgts">Saldo de FGTS (R$)</label>
+                    <input type="number" id="fgts" placeholder="Consulte no app FGTS" step="0.01">
+                </div>
+
+                <div class="input-group" style="display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" id="feriasVencidas" style="width: auto;">
+                    <label for="feriasVencidas" style="margin-bottom: 0;">Possui férias vencidas (não tiradas)?</label>
+                </div>
+
+                <button type="submit">Calcular Rescisão</button>
+            </form>
         </div>
-        <div class="input-group" style="flex: 1;">
-            <label for="dataSaida">Data de Saída (último dia trabalhado)</label>
-            <input type="date" id="dataSaida" required>
-        </div>
-    </div>
 
-    <div class="input-group">
-        <label for="salarioBruto">Último Salário Bruto (R$)</label>
-        <input type="number" id="salarioBruto" step="0.01" placeholder="Ex: 3000.00" required>
-    </div>
-     <div class="input-group">
-        <label for="saldoFgts">Saldo do FGTS (R$)</label>
-        <input type="number" id="saldoFgts" step="0.01" placeholder="Consulte no app FGTS" required>
-    </div>
-
-    <div class="input-group" style="display: flex; align-items: center; gap: 10px;">
-        <input type="checkbox" id="feriasVencidas" style="width: auto;">
-        <label for="feriasVencidas" style="margin-bottom: 0;">Possui férias vencidas (não tiradas)?</label>
-    </div>
-   
-    <button type="submit">Calcular Rescisão</button>
-</form>
-
-            <div id="resultado" class="result-area" style="display: none;"></div>
-        </div>
+        <!-- Anúncio à direita -->
+        <aside class="ad-sidebar ad-sidebar-right">
+            <div id="right-ad-placeholder"></div>
+        </aside>
     </main>
 
     <footer>
@@ -72,6 +82,6 @@
     </footer>
 
     <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/recisao.js"></script>
+    <script src="../assets/js/rescisao.js"></script>
 </body>
 </html>
