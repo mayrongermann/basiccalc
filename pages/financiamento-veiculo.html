@@ -1,0 +1,56 @@
+ <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BasicCalc - Divisão de Salário</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+   <div id="header-placeholder"></div>
+
+    <main class="page-container">
+    <aside class="ad-sidebar ad-sidebar-left">
+        <div id="left-ad-placeholder"></div> 
+    </aside>
+
+        <!-- Calculadora central -->
+        <div class="calculator-container">
+           <h2>Simulador de Financiamento de Veículo</h2>
+            <p style="text-align: center; margin-top: -1.5rem; margin-bottom: 2rem; font-size: 0.9em; color: #6c757d;">Compare a Tabela Price e SAC e descubra o custo real do seu carro.</p>
+            
+            <form id="financiamento-form">
+                <div class="input-group">
+                    <label for="valorVeiculo">Valor do Veículo (R$)</label>
+                    <input type="number" id="valorVeiculo" step="100" placeholder="Ex: 80000" required>
+                </div>
+                <div class="input-group">
+                    <label for="valorEntrada">Valor da Entrada (R$)</label>
+                    <input type="number" id="valorEntrada" step="100" value="0" placeholder="Ex: 20000">
+                </div>
+                <div class="input-group">
+                    <label for="taxaJurosMes">Taxa de Juros (% ao mês)</label>
+                    <input type="number" id="taxaJurosMes" step="0.01" placeholder="Ex: 1.99" required>
+                </div>
+                <div class="input-group">
+                    <label for="prazoMeses">Prazo (em meses)</label>
+                    <input type="number" id="prazoMeses" value="48" placeholder="Ex: 48" required>
+                </div>
+                <button type="submit">Simular Financiamento</button>
+            </form>
+
+            <div id="resultado" class="result-area" style="display: none;"></div>
+        </div>
+        
+     <aside class="ad-sidebar ad-sidebar-right">
+        <div id="right-ad-placeholder"></div>
+    </aside>
+    </main>
+    <footer>
+        <p>&copy; 2025 BasicCalc. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="../assets/js/503020.js"></script>
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
