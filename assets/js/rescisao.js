@@ -1,8 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
             const rescisaoForm = document.getElementById('rescisao-form');
             if (!rescisaoForm) return;
 
-            // --- FUNÇÕES DE CÁLCULO (COPIADAS DIRETAMENTE AQUI) ---
             const formatarDinheiro = (valor) => valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
             function calcularINSS(baseDeCalculo) {
@@ -27,11 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 return Math.max(0, irrf);
             }
 
-            // --- LÓGICA PRINCIPAL DA CALCULADORA ---
             rescisaoForm.addEventListener('submit', function(event) {
                 event.preventDefault();
 
-                // IDs CORRIGIDOS AQUI na busca dos elementos
                 const motivo = document.getElementById('motivoSaida').value;
                 const avisoPrevio = document.getElementById('avisoPrevio').value;
                 const dataAdmissao = new Date(document.getElementById('dataAdmissao').value + 'T00:00:00');
