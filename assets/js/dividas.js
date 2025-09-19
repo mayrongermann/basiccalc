@@ -1,151 +1,120 @@
-// Arquivo: assets/js/dividas.js (VERSÃO FINAL COM PLANO DE AÇÃO INTELIGENTE)
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('amortizacao-form');
+        if (!form) return;
 
-document.addEventListener('DOMContentLoaded', function() {
-    const dividasForm = document.getElementById('dividas-form');
-    if (!dividasForm) return;
-
-    // ... (função adicionarDivida continua a mesma) ...
-    let contadorDivida = 0;
-    function adicionarDivida() {
-        contadorDivida++;
-        const div = document.createElement('div');
-        div.className = 'divida-item';
-        div.style.border = '1px solid #ddd'; div.style.padding = '1rem';
-        div.style.marginBottom = '1rem'; div.style.borderRadius = '5px';
-        div.innerHTML = `<h5>Dívida #${contadorDivida}</h5><div class="input-group"><label>Nome da Dívida</label><input type="text" class="nome-divida" placeholder="Ex: Cartão de Crédito" required></div><div style="display: flex; gap: 1rem; flex-wrap: wrap;"><div class="input-group" style="flex: 1; min-width: 120px;"><label>Saldo Devedor (R$)</label><input type="number" step="0.01" class="saldo-divida" required></div><div class="input-group" style="flex: 1; min-width: 120px;"><label>Juros Mensais (%)</label><input type="number" step="0.01" class="juros-divida" required></div><div class="input-group" style="flex: 1; min-width: 120px;"><label>Pag. Mínimo (R$)</label><input type="number" step="0.01" class="minimo-divida" required></div></div>`;
-        document.getElementById('lista-dividas').appendChild(div);
-    }
-    document.getElementById('add-divida-btn').addEventListener('click', adicionarDivida);
-    adicionarDivida();
-
-    function simularPlano(dividas, orcamentoTotal, metodo) {
-        // ... (a função simularPlano está correta e continua a mesma) ...
-        if (metodo === 'BOLA_DE_NEVE') { dividas.sort((a, b) => a.saldo - b.saldo); } 
-        else if (metodo === 'AVALANCHA') { dividas.sort((a, b) => b.juros - a.juros); }
-        let meses = 0; let jurosTotais = 0; const LIMITE_MESES = 600;
-        while (dividas.some(d => d.saldo > 0) && meses < LIMITE_MESES) {
-            meses++;
-            let jurosDoMesTotal = 0;
-            dividas.forEach(d => { if(d.saldo > 0) jurosDoMesTotal += d.saldo * (d.juros / 100); });
-            if (orcamentoTotal < jurosDoMesTotal && meses > 1) { return { meses: LIMITE_MESES, jurosTotais: Infinity, quitado: false }; }
-            dividas.forEach(d => { if (d.saldo > 0) { const jurosDoMes = d.saldo * (d.juros / 100); d.saldo += jurosDoMes; jurosTotais += jurosDoMes; } });
-            let orcamentoRestante = orcamentoTotal;
-            let dividaAlvo = dividas.find(d => d.saldo > 0);
-            dividas.forEach(d => { if (d.saldo > 0 && d !== dividaAlvo) { const pagamento = Math.min(d.saldo, d.minimo); d.saldo -= pagamento; orcamentoRestante -= pagamento; } });
-            if (dividaAlvo) { const pagamentoAlvo = Math.min(dividaAlvo.saldo, orcamentoRestante); dividaAlvo.saldo -= pagamentoAlvo; }
-        }
-        const quitado = meses < LIMITE_MESES;
-        return { meses, jurosTotais, quitado };
-    }
-
-    dividasForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        // --- COLETA E VALIDAÇÃO ---
-        const orcamentoTotal = parseFloat(document.getElementById('orcamentoTotal').value);
-        const dividasItens = document.querySelectorAll('.divida-item');
-        const dividas = [];
-        dividasItens.forEach(item => { /* ... (coleta de dados) ... */
-            dividas.push({
-                nome: item.querySelector('.nome-divida').value || `Dívida #${dividas.length + 1}`,
-                saldo: parseFloat(item.querySelector('.saldo-divida').value),
-                juros: parseFloat(item.querySelector('.juros-divida').value),
-                minimo: parseFloat(item.querySelector('.minimo-divida').value)
-            });
-        });
-        const somaMinimos = dividas.reduce((acc, d) => acc + d.minimo, 0);
-        const resultadoDiv = document.getElementById('resultado');
-        resultadoDiv.style.display = 'block';
-        if (orcamentoTotal < somaMinimos) { /* ... (validação) ... */ return; }
-
-        // --- SIMULAÇÃO ---
-        const resultadoNeve = simularPlano(JSON.parse(JSON.stringify(dividas)), orcamentoTotal, 'BOLA_DE_NEVE');
-        const resultadoAvalancha = simularPlano(JSON.parse(JSON.stringify(dividas)), orcamentoTotal, 'AVALANCHA');
-        const resultadoMinimo = simularPlano(JSON.parse(JSON.stringify(dividas)), somaMinimos, 'NENHUM');
-
-        // --- FORMATAÇÃO E MONTAGEM DO HTML ---
         const formatarDinheiro = (valor) => valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        const formatarTempo = (meses) => { /* ... (função formatarTempo) ... */ };
+        const formatarTempo = (meses) => {
+            if (!isFinite(meses) || meses <= 0) return '0 meses';
+            const anos = Math.floor(meses / 12);
+            const mesesRestantes = Math.round(meses % 12);
+            if (mesesRestantes === 12) return `${anos + 1} ${anos + 1 > 1 ? 'anos' : 'ano'}`;
+            const partes = [];
+            if (anos > 0) partes.push(`${anos} ${anos > 1 ? 'anos' : 'ano'}`);
+            if (mesesRestantes > 0) partes.push(`${mesesRestantes} ${mesesRestantes > 1 ? 'meses' : 'mês'}`);
+            return partes.join(' e ');
+        };
 
-        // ==================================================================
-        // NOVA LÓGICA PARA CRIAR O PLANO DE AÇÃO INTELIGENTE
-        // ==================================================================
-        function gerarPlanoDeAcaoHtml(dividasOriginais, orcamentoTotal, metodo, corDestaque) {
-            const dividasOrdenadas = [...dividasOriginais].sort((a, b) => {
-                if (metodo === 'BOLA_DE_NEVE') return a.saldo - b.saldo;
-                if (metodo === 'AVALANCHA') return b.juros - a.juros;
-                return 0;
-            });
+        function simularAmortizacao(saldoInicial, taxaJuros, pagamentoMensal, pagamentoExtra = 0) {
+            let saldo = saldoInicial;
+            let meses = 0;
+            let jurosTotais = 0;
+            const tabela = [];
+            const i = taxaJuros / 100;
+
+            while (saldo > 0 && meses < 600) {
+                meses++;
+                const jurosDoMes = saldo * i;
+                jurosTotais += jurosDoMes;
+
+                const pagamentoPrincipal = pagamentoMensal - jurosDoMes;
+                const amortizacaoTotal = pagamentoPrincipal + pagamentoExtra;
+                
+                if (amortizacaoTotal <= 0) { // Se o pagamento mal cobre os juros
+                    return { meses: Infinity, jurosTotais: Infinity, tabela: [] };
+                }
+
+                const saldoAnterior = saldo;
+                saldo -= amortizacaoTotal;
+                
+                tabela.push({
+                    mes: meses,
+                    pagamento: pagamentoMensal + pagamentoExtra,
+                    juros: jurosDoMes,
+                    principal: amortizacaoTotal,
+                    saldoFinal: Math.max(0, saldo)
+                });
+
+                if (saldo < 0) {
+                        // Ajusta o último pagamento para não pagar a mais
+                    const ultimoPagamento = pagamentoMensal + pagamentoExtra + saldo; // saldo é negativo
+                    tabela[tabela.length - 1].pagamento = ultimoPagamento;
+                }
+            }
+            return { meses, jurosTotais, tabela };
+        }
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const saldoDevedor = parseFloat(document.getElementById('saldoDevedor').value);
+            const taxaJurosMes = parseFloat(document.getElementById('taxaJurosMes').value);
+            const pagamentoMensal = parseFloat(document.getElementById('pagamentoMensal').value);
+            const pagamentoExtra = parseFloat(document.getElementById('pagamentoExtra').value) || 0;
             
-            const somaMinimos = dividasOriginais.reduce((acc, d) => acc + d.minimo, 0);
-            let dinheiroExtra = orcamentoTotal - somaMinimos;
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.style.display = 'block';
 
-            const pagamentosDoMes = {};
-            dividasOriginais.forEach(d => pagamentosDoMes[d.nome] = d.minimo);
-
-            for (const divida of dividasOrdenadas) {
-                if (dinheiroExtra <= 0) break;
-                
-                const saldoAposMinimo = divida.saldo - divida.minimo;
-                const pagamentoExtraPossivel = Math.min(dinheiroExtra, saldoAposMinimo);
-                
-                pagamentosDoMes[divida.nome] += pagamentoExtraPossivel;
-                dinheiroExtra -= pagamentoExtraPossivel;
+            if (isNaN(saldoDevedor) || isNaN(taxaJurosMes) || isNaN(pagamentoMensal)) {
+                resultadoDiv.innerHTML = '<p style="color: red;">Preencha os campos obrigatórios.</p>';
+                return;
             }
 
-            return `
-                <ul style="list-style: none; padding: 0;">
-                    ${dividasOriginais.map(d => {
-                        const ehAlvo = pagamentosDoMes[d.nome] > d.minimo;
-                        return `
-                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
-                            ${d.nome}: 
-                            <strong style="float: right; color: ${ehAlvo ? corDestaque : 'inherit'}">
-                                ${formatarDinheiro(pagamentosDoMes[d.nome])}
-                                ${ehAlvo ? '🎯' : ''}
-                            </strong>
-                        </li>`
-                    }).join('')}
-                </ul>`;
-        }
-        
-        const planoAcaoNeveHtml = gerarPlanoDeAcaoHtml(dividas, orcamentoTotal, 'BOLA_DE_NEVE', 'var(--primary-color)');
-        const planoAcaoAvalanchaHtml = gerarPlanoDeAcaoHtml(dividas, orcamentoTotal, 'AVALANCHA', 'var(--secondary-color)');
+            const resultadoNormal = simularAmortizacao(saldoDevedor, taxaJurosMes, pagamentoMensal, 0);
+            const resultadoExtra = simularAmortizacao(saldoDevedor, taxaJurosMes, pagamentoMensal, pagamentoExtra);
 
-        // (Resto do código de montagem do HTML do resultado)
-        let baselineHtml = '';
-        if (resultadoMinimo.quitado) { /* ... */ } else { /* ... */ }
-        
-        resultadoDiv.innerHTML = `
-            <h3>1. Escolha sua Estratégia</h3>
-            <p>Comparamos dois planos para você quitar suas dívidas com seu orçamento de <strong>${formatarDinheiro(orcamentoTotal)}</strong>.</p>
-            ${baselineHtml}
-            <div style="display: flex; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap;">
-                <div style="flex: 1; padding: 1rem; border: 2px solid var(--primary-color); border-radius: 8px;">
-                     <h4>❄️ Plano Bola de Neve</h4>
-                     <p><strong>Tempo para liberdade:</strong> ${formatarTempo(resultadoNeve.meses)}</p>
-                     <p><strong>Total de juros pagos:</strong> ${formatarDinheiro(resultadoNeve.jurosTotais)}</p>
-                </div>
-                <div style="flex: 1; padding: 1rem; border: 2px solid var(--secondary-color); border-radius: 8px;">
-                     <h4>🔥 Plano Avalancha</h4>
-                     <p><strong>Tempo para liberdade:</strong> ${formatarTempo(resultadoAvalancha.meses)}</p>
-                     <p><strong>Total de juros pagos:</strong> ${formatarDinheiro(resultadoAvalancha.jurosTotais)}</p>
-                </div>
-            </div>
+            if (!isFinite(resultadoNormal.meses)) {
+                resultadoDiv.innerHTML = '<p style="color: red;">Atenção: A parcela mensal não é suficiente para cobrir os juros. A dívida nunca será quitada.</p>';
+                return;
+            }
+            
+            const mesesEconomizados = resultadoNormal.meses - resultadoExtra.meses;
+            const jurosEconomizados = resultadoNormal.jurosTotais - resultadoExtra.jurosTotais;
 
-            <hr style="margin: 2rem 0;">
+            const gerarTabelaHtml = (tabela) => {
+                    return `<div style="max-height: 250px; overflow-y: auto; border: 1px solid #eee; margin-top: 10px;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.8em;">
+                        <thead><tr style="text-align: left;"><th>Mês</th><th>Juros</th><th>Amortização</th><th>Saldo Devedor</th></tr></thead>
+                        <tbody>
+                            ${tabela.map(p => `
+                                <tr style="border-top: 1px solid #eee;">
+                                    <td>${p.mes}</td><td>${formatarDinheiro(p.juros)}</td>
+                                    <td>${formatarDinheiro(p.principal)}</td><td>${formatarDinheiro(p.saldoFinal)}</td>
+                                </tr>`).join('')}
+                        </tbody>
+                    </table>
+                </div>`;
+            };
 
-            <h3>2. Seu Plano de Ação para o Próximo Mês</h3>
-            <div style="display: flex; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap; text-align: left;">
-                <div style="flex: 1;">
-                    <h4>❄️ Pagamentos (Bola de Neve)</h4>
-                    ${planoAcaoNeveHtml}
+            resultadoDiv.innerHTML = `
+                <div class="comparison-container">
+                    <div class="result-card">
+                        <h4>🗓️ Pagamento Normal</h4>
+                        <p><strong>Tempo para Quitar:</strong> ${formatarTempo(resultadoNormal.meses)}</p>
+                        <p><strong>Total de Juros Pagos:</strong> ${formatarDinheiro(resultadoNormal.jurosTotais)}</p>
+                        <details style="cursor: pointer;"><summary style="font-size: 0.9em;">Ver tabela de amortização</summary>${gerarTabelaHtml(resultadoNormal.tabela)}</details>
+                    </div>
+                    <div class="result-card">
+                        <h4>🚀 Com Pagamento Extra</h4>
+                        <p><strong>Tempo para Quitar:</strong> ${formatarTempo(resultadoExtra.meses)}</p>
+                        <p><strong>Total de Juros Pagos:</strong> ${formatarDinheiro(resultadoExtra.jurosTotais)}</p>
+                        <details style="cursor: pointer;"><summary style="font-size: 0.9em;">Ver tabela de amortização</summary>${gerarTabelaHtml(resultadoExtra.tabela)}</details>
+                    </div>
                 </div>
-                <div style="flex: 1;">
-                    <h4>🔥 Pagamentos (Avalancha)</h4>
-                    ${planoAcaoAvalanchaHtml}
-                </div>
-            </div>
-        `;
+                ${pagamentoExtra > 0 ? `
+                <div class="savings-box">
+                    <h3>🎉 Sua Economia 🎉</h3>
+                    <p>Amortizando ${formatarDinheiro(pagamentoExtra)} a mais todo mês, você quitará sua dívida <strong>${formatarTempo(mesesEconomizados)} mais cedo</strong> e economizará <strong>${formatarDinheiro(jurosEconomizados)}</strong> em juros!</p>
+                </div>` : ''}
+            `;
+        });
     });
-});

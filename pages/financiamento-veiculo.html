@@ -1,30 +1,53 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Divisão de Salário</title>
+    <title>Calculadora de Financiamento de Veículo com Tabela FIPE - BasicCalc's</title>
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="icon" type="image/svg+xml" href="../assets/img/icon_calc.svg">
-    <link rel="alternate icon" href="../assets/img/icon_calc.png">
+    <style>
+        /* Estilos específicos para a exibição do resultado */
+        .comparison-container { display: flex; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .result-card { flex: 1; min-width: 250px; padding: 1.5rem; border-radius: 8px; border: 1px solid var(--light-color); text-align: left;}
+        .result-card h4 { margin-top: 0; color: var(--primary-color); }
+        .result-card p { display: flex; justify-content: space-between; margin: 0.5rem 0; font-size: 0.9em; }
+        .result-card .main-value { font-size: 1.2em; }
+        .result-card .total-cost { font-weight: bold; font-size: 1.1em; margin-top: 1rem; border-top: 1px solid #eee; padding-top: 1rem; }
+    </style>
 </head>
 <body>
-   <div id="header-placeholder"></div>
+
+    <div id="header-placeholder"></div>
 
     <main class="page-container">
-    <aside class="ad-sidebar ad-sidebar-left">
-        <div id="left-ad-placeholder"></div> 
-    </aside>
+        <aside class="ad-sidebar ad-sidebar-left">
+            <div id="left-ad-placeholder"></div> 
+        </aside>
 
-        <!-- Calculadora central -->
-        <div class="calculator-container">
-           <h2>Simulador de Financiamento de Veículo</h2>
-            <p style="text-align: center; margin-top: -1.5rem; margin-bottom: 2rem; font-size: 0.9em; color: #6c757d;">Compare a Tabela Price e SAC e descubra o custo real do seu carro.</p>
+        <div class="calculator-container" style="max-width: 550px;">
+            <h2>Simulador de Financiamento de Veículo</h2>
+            <p style="text-align: center; margin-top: -1.5rem; margin-bottom: 2rem; font-size: 0.9em; color: #6c757d;">Selecione um veículo na Tabela FIPE para simular.</p>
             
             <form id="financiamento-form">
+    
                 <div class="input-group">
-                    <label for="valorVeiculo">Valor do Veículo (R$)</label>
-                    <input type="number" id="valorVeiculo" step="100" placeholder="Ex: 80000" required>
+                    <label for="marcas">Marca</label>
+                    <select id="marcas" class="input-group input" style="width: 100%; padding: 10px;" required><option>Carregando...</option></select>
+                </div>
+                <div class="input-group" id="modelos-group" style="display: none;">
+                    <label for="modelos">Modelo</label>
+                    <select id="modelos" class="input-group input" style="width: 100%; padding: 10px;" required></select>
+                </div>
+                <div class="input-group" id="anos-group" style="display: none;">
+                    <label for="anos">Ano</label>
+                    <select id="anos" class="input-group input" style="width: 100%; padding: 10px;" required></select>
+                </div>
+                
+                <hr style="margin: 2rem 0;">
+                
+                <div class="input-group">
+                    <label for="valorVeiculo">Valor do Veículo (R$) (Preenchido pela Tabela FIPE)</label>
+                    <input type="number" id="valorVeiculo" step="100" placeholder="Selecione o veículo acima" required readonly>
                 </div>
                 <div class="input-group">
                     <label for="valorEntrada">Valor da Entrada (R$)</label>
@@ -41,18 +64,17 @@
                 <button type="submit">Simular Financiamento</button>
             </form>
 
-            <div id="resultado" class="result-area" style="display: none;"></div>
+            <div id="resultado" class="result-area" style="display: none; text-align: left;"></div>
         </div>
         
-     <aside class="ad-sidebar ad-sidebar-right">
-        <div id="right-ad-placeholder"></div>
-    </aside>
+        <aside class="ad-sidebar ad-sidebar-right">
+            <div id="right-ad-placeholder"></div>
+        </aside>
     </main>
-    <footer>
-        <p>&copy; 2025 BasicCalc. Todos os direitos reservados.</p>
-    </footer>
 
-    <script src="../assets/js/financiamento-veiculo.js"></script>
+    <div id="footer-placeholder"></div>
+
     <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/financiamento-veiculo.js"></script>
 </body>
 </html>

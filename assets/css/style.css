@@ -1,6 +1,6 @@
 /* Definição de variáveis de cor */
 :root {
-    --primary-color: #9c6ed4;
+    --primary-color: #1f2937;
     --secondary-color: #34a853;
     --dark-color: #333333;
     --light-color: #e9ecef;
@@ -372,7 +372,7 @@ footer {
 
 .category-item h4 {
     margin: 0 0 10px;
-    color: var(--dark-color);
+    color: var(--primary-color);
     font-size: 1.2em;
 }
 
@@ -541,7 +541,7 @@ footer {
 }
 
 .logo {
-    height: 80px;
+    height: 40px;
     margin-bottom: 0;
 }
 
@@ -595,25 +595,25 @@ footer {
 
 /* TÍTULO DA COLUNA COM CORRIGIDO - AGORA VAI APARECER */
 .dropdown-content h4 {
-    margin: 0 0 10px 0;
+margin: 0 0 10px 0;
     font-size: 1em;
-    color: var(--primary-color) !important; /* Usando sua cor primária e !important para garantir */
+    color: var(--primary-color) !important;
     border-bottom: 2px solid var(--light-color);
     padding-bottom: 8px;
 }
 
 /* LINKS DO DROPDOWN CORRIGIDOS - AGORA VÃO APARECER */
 .dropdown-content a {
-    color: var(--dark-color) !important; /* Usando sua cor escura e !important para garantir */
+    color: var(--dark-color) !important; 
     padding: 8px 0;
     display: block;
     font-weight: normal;
-    text-decoration: none; /* Garante que não tenha sublinhado */
+    text-decoration: none; 
 }
 
 .dropdown-content a:hover {
-    color: var(--primary-color) !important; /* O hover também precisa da correção */
-    background-color: transparent; /* Garante que não haja fundo colorido no hover */
+    color: var(--primary-color) !important;
+    background-color: transparent; 
 }
 
 /* Mostra o dropdown ao passar o mouse */
@@ -691,10 +691,5 @@ footer {
     .dropdown-content a,
     .dropdown-content a:hover {
         color: var(--link-hover-color) !important;
-    }
-
-    .dropdown-column h4 {
-        color: #fff !important;
-        border-bottom-color: rgba(255, 255, 255, 0.5);
     }
 }
